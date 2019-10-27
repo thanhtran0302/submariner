@@ -1,12 +1,12 @@
-import AbstractArray from "./AbstractArray";
+import AbstractArray from './AbstractArray';
 
-describe("AbstractArray", () => {
-  it("should init array", () => {
+describe('AbstractArray', () => {
+  it('should init array', () => {
     const arr = new AbstractArray([1, 2, 3]);
     expect(arr.getItems()).toEqual([1, 2, 3]);
   });
 
-  it("should return array length", () => {
+  it('should return array length', () => {
     const arr = new AbstractArray([1, 2, 3]);
     expect(arr.length()).toEqual(3);
   });

@@ -1,4 +1,4 @@
-import AbstractArray from "../abstractArray/AbstractArray";
+import AbstractArray from '../abstractArray/AbstractArray';
 
 export default class Queue<T = number> extends AbstractArray<T> {
   constructor(items?: T[]) {
