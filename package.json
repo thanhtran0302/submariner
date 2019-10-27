@@ -1,0 +1,37 @@
+{
+  "name": "algolia_parser",
+  "version": "1.0.0",
+  "description": "Algorithm utils",
+  "main": "./dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "test": "jest --env=jsdom --logHeapUsage --maxWorkers=2 --verbose",
+    "test:watch": "yarn test --watch",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "pretty-quick": "pretty-quick"
+  },
+  "author": "Thanh TRAN <ttranpro32@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@types/jest": "^24.0.20",
+    "babel-jest": "^24.9.0",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^2.0.0",
+    "ts-jest": "^24.1.0",
+    "tsc": "^1.20150623.0",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.6.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint --fix && yarn pretty-quick --staged",
+      "pre-push": "yarn build"
+    }
+  }
+}
