@@ -1,16 +1,8 @@
-export default class Queue<T = number> {
-  private _size: number = 0;
-  private _items: T[] = [];
+import AbstractArray from "../abstractArray/AbstractArray";
 
+export default class Queue<T = number> extends AbstractArray<T> {
   constructor(items?: T[]) {
-    if (items) {
-      this._items = items;
-      this._size = items.length;
-    }
-  }
-
-  public length() {
-    return this._size;
+    super(items);
   }
 
   public push(item: T) {
@@ -21,9 +13,5 @@ export default class Queue<T = number> {
   public pop() {
     this._size -= 1;
     return this._items.shift();
-  }
-
-  public getItems(): T[] {
-    return this._items;
   }
 }
