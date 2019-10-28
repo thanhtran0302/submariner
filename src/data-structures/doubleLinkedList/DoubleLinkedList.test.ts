@@ -1,4 +1,4 @@
-import DoubleLinkedList from './DoubleLinkedList';
+import DoubleLinkedList, { LinkNode } from './DoubleLinkedList';
 
 describe('DoubleLinkedList', () => {
   it('should init empty list', () => {
@@ -158,5 +158,77 @@ describe('DoubleLinkedList', () => {
     expect(list.pop().value).toEqual(1);
     expect(list.length()).toEqual(0);
     expect(list.pop()).toEqual(null);
+  });
+
+  it('should delete matching value', () => {
+    const list = new DoubleLinkedList(1);
+
+    list.push(2);
+    list.push(3);
+    const deletedValue: LinkNode<number> = list.deleteValue(2);
+    expect(deletedValue.value).toEqual(2);
+    expect(deletedValue.prev.value).toEqual(1);
+    expect(deletedValue.next.value).toEqual(3);
+    expect(list.toArray()).toEqual([1, 3]);
+    expect(list.length()).toEqual(2);
+  });
+
+  it('should delete matching last value', () => {
+    const list = new DoubleLinkedList(1);
+
+    list.push(2);
+    list.push(3);
+    const deletedValue: LinkNode<number> = list.deleteValue(3);
+    expect(deletedValue.value).toEqual(3);
+    expect(deletedValue.prev.value).toEqual(2);
+    expect(deletedValue.next).toEqual(null);
+    expect(list.toArray()).toEqual([1, 2]);
+    expect(list.length()).toEqual(2);
+  });
+
+  it('should delete last value in list', () => {
+    const list = new DoubleLinkedList(1);
+
+    const deletedValue: LinkNode<number> = list.deleteValue(1);
+    expect(deletedValue.value).toEqual(1);
+    expect(deletedValue.prev).toEqual(null);
+    expect(deletedValue.next).toEqual(null);
+    expect(list.toArray()).toEqual([]);
+    expect(list.length()).toEqual(0);
+  });
+
+  it('should do nothing on not found value', () => {
+    const list = new DoubleLinkedList(1);
+
+    const deletedValue: LinkNode<number> = list.deleteValue(10);
+    expect(deletedValue).toEqual(null);
+    expect(list.toArray()).toEqual([1]);
+    expect(list.length()).toEqual(1);
+  });
+
+  it('should delete matching head value', () => {
+    const list = new DoubleLinkedList(1);
+
+    list.push(2);
+    const deletedValue: LinkNode<number> = list.deleteValue(1);
+    expect(deletedValue.value).toEqual(1);
+    expect(list.toArray()).toEqual([2]);
+    expect(list.length()).toEqual(1);
+  });
+
+  it('should return null on delete head empty list', () => {
+    const list = new DoubleLinkedList();
+
+    expect(list.deleteHead()).toEqual(null);
+    expect(list.length()).toEqual(0);
+  });
+
+  it('should delete head', () => {
+    const list = new DoubleLinkedList(1);
+
+    list.push(2);
+    expect(list.deleteHead().value).toEqual(1);
+    expect(list.length()).toEqual(1);
+    expect(list.toArray()).toEqual([2]);
   });
 });

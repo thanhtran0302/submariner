@@ -88,12 +88,12 @@ export default class DoubleLinkedList<T> {
   }
 
   public pop(): LinkNode<T> {
-    const node: LinkNode<T> = this._tail;
-
-    if (this._size < 1) {
+    if (!this._size) {
       return null;
     }
-    if (this._size <= 1) {
+    const node: LinkNode<T> = this._tail;
+
+    if (this._size === 1) {
       this._head = null;
       this._tail = null;
       this._size = 0;
@@ -103,6 +103,57 @@ export default class DoubleLinkedList<T> {
     this._tail = this._tail.prev;
     this._size -= 1;
     return node;
+  }
+
+  public deleteHead(): LinkNode<T> {
+    if (!this._size) {
+      return null;
+    }
+    const node: LinkNode<T> = this._head;
+
+    if (this._size === 1) {
+      this._head = null;
+      this._tail = null;
+      this._size = 0;
+      return node;
+    }
+    this._head = node.next;
+    this._size -= 1;
+    return node;
+  }
+
+  public deleteValue(value: T): LinkNode<T> {
+    const node: LinkNode<T> = {
+      value,
+      next: null,
+      prev: null
+    };
+
+    if (
+      this._head.value === value ||
+      (this._head.value === value && this._size <= 1)
+    ) {
+      return this.deleteHead();
+    }
+    if (
+      this._tail.value === value ||
+      (this._tail.value === value && this._size <= 1)
+    ) {
+      return this.pop();
+    }
+
+    let tmpNode: LinkNode<T> = this._head;
+    while (tmpNode !== null) {
+      if (tmpNode.value === value) {
+        tmpNode.prev.next = tmpNode.next;
+        node.prev = tmpNode.prev;
+        node.next = tmpNode.next;
+        this._size -= 1;
+        return node;
+      }
+      tmpNode = tmpNode.next;
+    }
+    return null;
   }
 
   public isEmpty(): boolean {
@@ -124,3 +175,13 @@ export default class DoubleLinkedList<T> {
     return array;
   }
 }
+
+// const list = new DoubleLinkedList(1);
+
+// list.push(2);
+// list.push(3);
+// list.push(4);
+
+// console.log(list.toArray());
+
+// console.log(list.toArray());
