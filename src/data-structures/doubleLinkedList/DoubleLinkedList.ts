@@ -87,6 +87,24 @@ export default class DoubleLinkedList<T> {
     return null;
   }
 
+  public pop(): LinkNode<T> {
+    const node: LinkNode<T> = this._tail;
+
+    if (this._size < 1) {
+      return null;
+    }
+    if (this._size <= 1) {
+      this._head = null;
+      this._tail = null;
+      this._size = 0;
+      return node;
+    }
+    this._tail.prev.next = null;
+    this._tail = this._tail.prev;
+    this._size -= 1;
+    return node;
+  }
+
   public isEmpty(): boolean {
     return !this._head;
   }

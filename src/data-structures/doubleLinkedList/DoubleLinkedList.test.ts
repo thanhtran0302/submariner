@@ -125,4 +125,38 @@ describe('DoubleLinkedList', () => {
     expect(list.pushHead(0).value).toEqual(0);
     expect(list.toArray()).toEqual([0, 1]);
   });
+
+  it('should pop value', () => {
+    const list = new DoubleLinkedList(1);
+
+    list.push(2);
+    expect(list.pop().value).toEqual(2);
+    expect(list.length()).toEqual(1);
+    expect(list.toArray()).toEqual([1]);
+  });
+
+  it('should pop only one value', () => {
+    const list = new DoubleLinkedList(1);
+
+    expect(list.pop().value).toEqual(1);
+    expect(list.length()).toEqual(0);
+  });
+
+  it('should not pop empty list', () => {
+    const list = new DoubleLinkedList();
+
+    expect(list.pop()).toEqual(null);
+    expect(list.length()).toEqual(0);
+  });
+
+  it('should pop until null', () => {
+    const list = new DoubleLinkedList(1);
+
+    list.push(2);
+    expect(list.pop().value).toEqual(2);
+    expect(list.length()).toEqual(1);
+    expect(list.pop().value).toEqual(1);
+    expect(list.length()).toEqual(0);
+    expect(list.pop()).toEqual(null);
+  });
 });
