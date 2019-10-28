@@ -30,6 +30,17 @@ export default class DoubleLinkedList<T> {
     return this._tail;
   }
 
+  public pushHead(value: T): LinkNode<T> {
+    const node: LinkNode<T> = {
+      value,
+      next: this._head,
+      prev: null
+    };
+    this._head = node;
+    this._size += 1;
+    return node;
+  }
+
   public push(value: T): LinkNode<T> {
     const node: LinkNode<T> = {
       value,
@@ -95,16 +106,3 @@ export default class DoubleLinkedList<T> {
     return array;
   }
 }
-
-// const list = new DoubleLinkedList(1);
-
-// list.push(2);
-// list.push(4);
-// list.pushAt(2, 3);
-// console.log(list.toArray());
-// console.log(list.length());
-// console.log(list.getHead().value);
-// console.log(list.getHead().next.value);
-// console.log(list.getHead().next.next.value);
-// console.log(list.getHead().next.next.prev.value);
-// console.log(list.getHead().next.next.prev.prev.value);

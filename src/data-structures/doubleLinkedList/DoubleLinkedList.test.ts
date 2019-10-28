@@ -118,4 +118,11 @@ describe('DoubleLinkedList', () => {
     expect(list.pushAt(30, 4)).toEqual(null);
     expect(list.toArray()).toEqual([1, 2, 3, 5]);
   });
+
+  it('should push to head', () => {
+    const list = new DoubleLinkedList(1);
+
+    expect(list.pushHead(0).value).toEqual(0);
+    expect(list.toArray()).toEqual([0, 1]);
+  });
 });
