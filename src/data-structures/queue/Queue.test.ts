@@ -38,4 +38,11 @@ describe('Queue', () => {
 
     expect(queue.getItems()).toEqual([true, 1, false]);
   });
+
+  it('should push element to queue', () => {
+    const queue = new Queue([1, 2, 3]);
+
+    queue.push(4);
+    expect(queue.getItems()[queue.length() - 1]).toEqual(4);
+  });
 });

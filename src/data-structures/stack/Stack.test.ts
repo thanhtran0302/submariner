@@ -38,4 +38,11 @@ describe('Stack', () => {
 
     expect(stack.getItems()).toEqual([true, 1, false]);
   });
+
+  it('should resized popped stack', () => {
+    const stack = new Stack([1, 2, 3]);
+
+    stack.push(4);
+    expect(stack.getItems()[stack.length() - 1]).toEqual(4);
+  });
 });

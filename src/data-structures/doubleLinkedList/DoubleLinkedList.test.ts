@@ -79,6 +79,14 @@ describe('DoubleLinkedList', () => {
     expect(list.toArray()).toEqual([1, 2, 3, 4]);
   });
 
+  it('should pushAt to the only element in list', () => {
+    const list = new DoubleLinkedList(1);
+
+    expect(list.toArray()).toEqual([1]);
+    expect(list.pushAt(1, 2).value).toEqual(2);
+    expect(list.toArray()).toEqual([1, 2]);
+  });
+
   it('should pushAt after tail value', () => {
     const list = new DoubleLinkedList(1);
 
