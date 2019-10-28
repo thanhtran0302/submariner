@@ -3,5 +3,6 @@ module.exports = {
   transform: {
     '\\.ts$': 'ts-jest'
   },
-  testPathIgnorePatterns: ['/node_modules/']
+  testPathIgnorePatterns: ['/node_modules/'],
+  collectCoverage: true
 };
