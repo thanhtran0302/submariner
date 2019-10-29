@@ -175,13 +175,3 @@ export default class DoubleLinkedList<T> {
     return array;
   }
 }
-
-// const list = new DoubleLinkedList(1);
-
-// list.push(2);
-// list.push(3);
-// list.push(4);
-
-// console.log(list.toArray());
-
-// console.log(list.toArray());
