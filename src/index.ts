@@ -4,3 +4,4 @@ export {
   default as DoubleLinkedList,
   LinkNode
 } from './data-structures/doubleLinkedList/DoubleLinkedList';
+export { binarySearch } from './algorithms/binarySearch/binarySearch';

@@ -1,3 +1,5 @@
+import { binarySearch } from '../../algorithms/binarySearch/binarySearch';
+
 export default class SortedArray {
   private _array: number[] = [];
   private _size: number = 0;
@@ -23,7 +25,7 @@ export default class SortedArray {
   }
 
   public find(value: number): number {
-    return this._find(value, 0, this._array.length - 1);
+    return binarySearch(this._array, value, 0, this._array.length - 1);
   }
 
   public push(...value: number[]): number {
@@ -35,25 +37,5 @@ export default class SortedArray {
 
   private _sort() {
     this._array.sort((a: number, b: number) => a - b);
-  }
-
-  private _find(value: number, lIdx: number, rIdx: number): number {
-    const midIdx: number = Math.round((rIdx - lIdx) / 2 + lIdx);
-
-    if (this._array[lIdx] === value) {
-      return lIdx;
-    }
-    if (this._array[rIdx] === value) {
-      return rIdx;
-    }
-    if (rIdx > lIdx) {
-      if (this._array[midIdx] === value) {
-        return midIdx;
-      } else if (this._array[midIdx] > value) {
-        return this._find(value, lIdx, midIdx);
-      }
-      return this._find(value, midIdx, rIdx);
-    }
-    return -1;
   }
 }
