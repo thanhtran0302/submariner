@@ -1,4 +1,5 @@
 import { binarySearch } from '../../algorithms/binarySearch/BinarySearch';
+import { insertionSort } from '../../algorithms/sort/insertionSort/InsertionSort';
 
 export default class SortedArray {
   private _array: number[] = [];
@@ -28,10 +29,23 @@ export default class SortedArray {
     return binarySearch(this._array, value, 0, this._array.length - 1);
   }
 
+  // Why insertion sort ?
+  // Insertion sort is one of the most simple and efficient
+  // sort algorithm for nearest sorted array.
+  // That's why we only apply insertion sort on an array that
+  // already filled.
+  // Because we know that this array is already sorted for the
+  // first time.
   public push(...value: number[]): number {
-    this._size += value.length;
+    const isSorted: boolean = this._array.length > 0;
+
     this._array.push(...value);
-    this._sort();
+    if (isSorted) {
+      this._array = insertionSort(this._array);
+    } else {
+      this._sort();
+    }
+    this._size += value.length;
     return this._size;
   }
 
