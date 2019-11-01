@@ -66,10 +66,10 @@ export default class DoubleLinkedList<T> {
       next: null,
       prev: null
     };
-    if (this._tail.value === value) {
-      return this.push(newVal);
-    }
-    if (this._head.value === value && this._head.next === null) {
+    if (
+      this._tail.value === value ||
+      (this._head.value === value && this._head.next === null)
+    ) {
       return this.push(newVal);
     }
 
