@@ -5,7 +5,7 @@ export {
   default as DoubleLinkedList,
   LinkNode
 } from './data-structures/doubleLinkedList/DoubleLinkedList';
-export { binarySearch } from './algorithms/binarySearch/binarySearch';
+export { binarySearch } from './algorithms/binarySearch/BinarySearch';
 export {
   default as SortedArray
 } from './data-structures/sortedArray/SortedArray';

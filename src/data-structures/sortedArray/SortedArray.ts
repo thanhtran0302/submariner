@@ -1,4 +1,4 @@
-import { binarySearch } from '../../algorithms/binarySearch/binarySearch';
+import { binarySearch } from '../../algorithms/binarySearch/BinarySearch';
 
 export default class SortedArray {
   private _array: number[] = [];

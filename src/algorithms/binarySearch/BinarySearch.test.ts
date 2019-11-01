@@ -1,4 +1,4 @@
-import { binarySearch } from './binarySearch';
+import { binarySearch } from './BinarySearch';
 
 describe('binarySearch', () => {
   const arr: number[] = [2, 3, 23, 34, 45, 59, 100];
