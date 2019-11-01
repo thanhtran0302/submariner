@@ -44,39 +44,9 @@ describe('SortedArray', () => {
     expect(arr.get()).toEqual([2, 3, 23, 34, 45, 59, 100]);
   });
 
-  it('should find first value', () => {
-    const arr = new SortedArray([23, 45, 2, 100, 3, 59, 34]);
-
-    expect(arr.find(2)).toEqual(0);
-  });
-
-  it('should find last value', () => {
+  it('should find value', () => {
     const arr = new SortedArray([23, 45, 2, 100, 3, 59, 34]);
 
     expect(arr.find(100)).toEqual(6);
-  });
-
-  it('should find value in left part of array', () => {
-    const arr = new SortedArray([23, 45, 2, 100, 3, 59, 34]);
-
-    expect(arr.find(3)).toEqual(1);
-  });
-
-  it('should find value in right part of array', () => {
-    const arr = new SortedArray([23, 45, 2, 100, 3, 59, 34]);
-
-    expect(arr.find(34)).toEqual(3);
-  });
-
-  it('should find value that in middle of array', () => {
-    const arr = new SortedArray([23, 45, 2, 100, 3, 59, 34]);
-
-    expect(arr.find(3)).toEqual(1);
-  });
-
-  it('should return -1 on non found value', () => {
-    const arr = new SortedArray([23, 45, 2, 100, 3, 59, 34]);
-
-    expect(arr.find(1000)).toEqual(-1);
   });
 });
