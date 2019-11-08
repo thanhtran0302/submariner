@@ -62,7 +62,28 @@ export default class Tree {
       }
       return null;
     }
-    return null;
+  }
+
+  public findMin(): TreeNode {
+    return immutableObject(this._findMin(this._tree));
+  }
+
+  public findMax(): TreeNode {
+    return immutableObject(this._findMax(this._tree));
+  }
+
+  private _findMin(node: TreeNode): TreeNode {
+    if (node.left) {
+      return this._findMin(node.left);
+    }
+    return node;
+  }
+
+  private _findMax(node: TreeNode): TreeNode {
+    if (node.right) {
+      return this._findMax(node.right);
+    }
+    return node;
   }
 
   private _preOrderTraversel(

@@ -263,4 +263,79 @@ describe('Tree', () => {
     };
     expect(tree.root).toEqual(null);
   });
+
+  it('should find min value in tree and return immutable node', () => {
+    const tree = new Tree(10);
+
+    tree.insert(5);
+    tree.insert(4);
+    tree.insert(6);
+    tree.insert(3);
+    tree.insert(4.5);
+    tree.insert(5.5);
+    tree.insert(6.5);
+    const node = tree.findMin();
+
+    expect(node.value).toEqual(3);
+    node.left = {
+      value: 100,
+      left: null,
+      right: null
+    };
+    expect(tree.root).toEqual({
+      value: 10,
+      left: {
+        value: 5,
+        left: {
+          value: 4,
+          left: { value: 3, left: null, right: null },
+          right: { value: 4.5, left: null, right: null }
+        },
+        right: {
+          value: 6,
+          left: { value: 5.5, left: null, right: null },
+          right: { value: 6.5, left: null, right: null }
+        }
+      },
+      right: null
+    });
+  });
+
+  it('should find max value in tree and return immutable node', () => {
+    const tree = new Tree(10);
+
+    tree.insert(5);
+    tree.insert(4);
+    tree.insert(6);
+    tree.insert(3);
+    tree.insert(4.5);
+    tree.insert(5.5);
+    tree.insert(6.5);
+    tree.insert(11);
+    const node = tree.findMax();
+
+    expect(node.value).toEqual(11);
+    node.right = {
+      value: 100,
+      left: null,
+      right: null
+    };
+    expect(tree.root).toEqual({
+      value: 10,
+      left: {
+        value: 5,
+        left: {
+          value: 4,
+          left: { value: 3, left: null, right: null },
+          right: { value: 4.5, left: null, right: null }
+        },
+        right: {
+          value: 6,
+          left: { value: 5.5, left: null, right: null },
+          right: { value: 6.5, left: null, right: null }
+        }
+      },
+      right: { value: 11, left: null, right: null }
+    });
+  });
 });
