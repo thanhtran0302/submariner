@@ -1,3 +1,3 @@
 export function immutableObject<T>(object: T): T {
-  return object !== null ? { ...object } : null;
+  return !object || !Object.keys(object).length ? null : { ...object };
 }
