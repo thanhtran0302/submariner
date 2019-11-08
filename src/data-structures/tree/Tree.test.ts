@@ -1,4 +1,4 @@
-import Tree from './Tree';
+import Tree, { TreeNode } from './Tree';
 
 describe('Tree', () => {
   it('should initialize tree without default value', () => {
@@ -167,5 +167,100 @@ describe('Tree', () => {
     expect(JSON.stringify(tree.root)).toEqual(
       '{"value":10,"left":null,"right":null}'
     );
+  });
+
+  it('should inOrderTraversal', () => {
+    let i: number = 0;
+    const arrCmp = [3, 4, 4.5, 5, 5.5, 6, 6.5, 10];
+    const tree = new Tree(10);
+
+    tree.insert(5);
+    tree.insert(4);
+    tree.insert(6);
+    tree.insert(3);
+    tree.insert(4.5);
+    tree.insert(5.5);
+    tree.insert(6.5);
+    tree.inOrderTraversel((node: TreeNode) => {
+      expect(node.value).toEqual(arrCmp[i]);
+      ++i;
+    });
+  });
+
+  it('should preOrderTraversel', () => {
+    let i: number = 0;
+    const arrCmp = [10, 5, 4, 3, 4.5, 6, 5.5, 6.5];
+    const tree = new Tree(10);
+
+    tree.insert(5);
+    tree.insert(4);
+    tree.insert(6);
+    tree.insert(3);
+    tree.insert(4.5);
+    tree.insert(5.5);
+    tree.insert(6.5);
+    tree.preOrderTraversel((node: TreeNode) => {
+      expect(node.value).toEqual(arrCmp[i]);
+      ++i;
+    });
+  });
+
+  it('should postOrderTraversel', () => {
+    let i: number = 0;
+    const arrCmp = [3, 4.5, 4, 5.5, 6.5, 6, 5, 10];
+    const tree = new Tree(10);
+
+    tree.insert(5);
+    tree.insert(4);
+    tree.insert(6);
+    tree.insert(3);
+    tree.insert(4.5);
+    tree.insert(5.5);
+    tree.insert(6.5);
+    tree.postOrderTraversal((node: TreeNode) => {
+      expect(node.value).toEqual(arrCmp[i]);
+      ++i;
+    });
+  });
+
+  it('should not delete not found node', () => {
+    const tree = new Tree(10);
+    const node: TreeNode = tree.deleteNode(15);
+
+    expect(node).toEqual(null);
+    expect(tree.root).toEqual({
+      value: 10,
+      left: null,
+      right: null
+    });
+  });
+
+  it('should delete found node', () => {
+    const tree = new Tree(10);
+    const node: TreeNode = tree.deleteNode(10);
+
+    expect(node).toEqual({
+      value: 10,
+      left: null,
+      right: null
+    });
+    expect(tree.root).toEqual(null);
+  });
+
+  it('should delete found node and returned immutable node', () => {
+    const tree = new Tree(10);
+    const node: TreeNode = tree.deleteNode(10);
+
+    expect(node).toEqual({
+      value: 10,
+      left: null,
+      right: null
+    });
+    node.left = {
+      value: 15,
+      left: null,
+      right: null
+    };
+    expect(tree.root).toEqual(null);
   });
 });
