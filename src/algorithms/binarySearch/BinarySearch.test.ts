@@ -25,7 +25,7 @@ describe('binarySearch', () => {
     expect(binarySearch(arr, 3, lIdx, rIdx)).toEqual(1);
   });
 
-  it('should return -1 on non found value', () => {
-    expect(binarySearch(arr, 1000, lIdx, rIdx)).toEqual(-1);
+  it('should return null on non found value', () => {
+    expect(binarySearch(arr, 1000, lIdx, rIdx)).toEqual(null);
   });
 });

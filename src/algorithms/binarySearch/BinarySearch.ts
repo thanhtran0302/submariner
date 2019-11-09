@@ -20,5 +20,5 @@ export function binarySearch(
     }
     return binarySearch(array, value, midIdx, rIdx);
   }
-  return -1;
+  return null;
 }
