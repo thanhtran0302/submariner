@@ -13,7 +13,7 @@ export default class SortedArray extends AbstractArray {
   }
 
   public getByIdx(idx: number): number {
-    return this._items[idx];
+    return this._items[idx] ? this._items[idx] : null;
   }
 
   public find(value: number): number {
