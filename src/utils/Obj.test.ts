@@ -1,5 +1,5 @@
 import { TreeNode } from '../data-structures/tree/Tree';
-import { immutableObject } from './Obj';
+import { immutableArray, immutableObject } from './Obj';
 
 describe('immutableObject', () => {
   it('should return null on empty or null object', () => {
@@ -20,6 +20,24 @@ describe('immutableObject', () => {
       left: null,
       right: null
     };
-    expect(obj).toEqual(obj);
+    expect(obj).toEqual({
+      value: 5,
+      left: null,
+      right: null
+    });
+  });
+});
+
+describe('immutableArray', () => {
+  it('should return an empty array', () => {
+    expect(immutableArray([])).toEqual([]);
+  });
+
+  it('should return new object', () => {
+    const arr: number[] = [4, 5];
+    const newArr: number[] = immutableArray(arr);
+
+    newArr.push(6);
+    expect(arr).toEqual([4, 5]);
   });
 });

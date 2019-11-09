@@ -1,3 +1,5 @@
+import { immutableArray } from '../../utils/Obj';
+
 export default class AbstractArray<T = number> {
   protected _size: number = 0;
   protected _items: T[] = [];
@@ -14,6 +16,6 @@ export default class AbstractArray<T = number> {
   }
 
   get items(): T[] {
-    return this._items;
+    return immutableArray(this._items);
   }
 }
