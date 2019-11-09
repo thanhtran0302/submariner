@@ -112,7 +112,7 @@ describe('Tree', () => {
 
     tree.insert(5);
     tree.insert(20);
-    expect(tree.toJSON()).toEqual(
+    expect(tree.toJSON).toEqual(
       '{"value":10,"left":{"value":5,"left":null,"right":null},"right":{"value":20,"left":null,"right":null}}'
     );
   });
@@ -338,7 +338,7 @@ describe('Tree', () => {
     tree.insert(4.5);
     tree.insert(5.5);
     tree.insert(6.5);
-    const node = tree.findMin();
+    const node = tree.min;
 
     expect(node.value).toEqual(3);
     node.left = {
@@ -376,7 +376,7 @@ describe('Tree', () => {
     tree.insert(5.5);
     tree.insert(6.5);
     tree.insert(11);
-    const node = tree.findMax();
+    const node = tree.max;
 
     expect(node.value).toEqual(11);
     node.right = {

@@ -37,7 +37,7 @@ export default class Tree {
     return immutableObject(node);
   }
 
-  public toJSON() {
+  get toJSON(): string {
     return JSON.stringify(this._tree);
   }
 
@@ -84,11 +84,11 @@ export default class Tree {
     return immutableObject(toRemoveNode);
   }
 
-  public findMin(): TreeNode {
+  get min(): TreeNode {
     return immutableObject(this._findMin(this._tree));
   }
 
-  public findMax(): TreeNode {
+  get max(): TreeNode {
     return immutableObject(this._findMax(this._tree));
   }
 

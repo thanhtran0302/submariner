@@ -22,11 +22,11 @@ export default class DoubleLinkedList<T> {
     }
   }
 
-  public getHead(): LinkNode<T> {
+  get head(): LinkNode<T> {
     return this._head;
   }
 
-  public getTail(): LinkNode<T> {
+  get tail(): LinkNode<T> {
     return this._tail;
   }
 
@@ -47,7 +47,7 @@ export default class DoubleLinkedList<T> {
       next: null,
       prev: null
     };
-    if (this.isEmpty()) {
+    if (this.isEmpty) {
       this._head = node;
       this._tail = node;
       this._size += 1;
@@ -156,15 +156,15 @@ export default class DoubleLinkedList<T> {
     return null;
   }
 
-  public isEmpty(): boolean {
+  get isEmpty(): boolean {
     return !this._head;
   }
 
-  public length(): number {
+  get length(): number {
     return this._size;
   }
 
-  public toArray(): T[] {
+  get toArray(): T[] {
     const array: T[] = [];
     let tmpNode: LinkNode<T> = this._head;
 

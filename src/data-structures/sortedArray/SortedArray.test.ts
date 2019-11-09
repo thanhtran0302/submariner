@@ -4,22 +4,22 @@ describe('SortedArray', () => {
   it('should initialize with values', () => {
     const arr = new SortedArray([1, 2]);
 
-    expect(arr.getItems()).toEqual([1, 2]);
+    expect(arr.items).toEqual([1, 2]);
   });
 
   it('should get length', () => {
     const arr = new SortedArray();
 
     arr.push(1, 2, 3);
-    expect(arr.length()).toEqual(3);
+    expect(arr.length).toEqual(3);
   });
 
   it('should return native array', () => {
     const arr = new SortedArray();
 
     arr.push(1, 2, 3);
-    expect(arr.getItems()).toEqual([1, 2, 3]);
-    expect(arr.getItems().join()).toEqual('1,2,3');
+    expect(arr.items).toEqual([1, 2, 3]);
+    expect(arr.items.join()).toEqual('1,2,3');
   });
 
   it('should return value by index', () => {
@@ -33,15 +33,15 @@ describe('SortedArray', () => {
     const arr = new SortedArray();
 
     arr.push(1);
-    expect(arr.getItems()).toEqual([1]);
+    expect(arr.items).toEqual([1]);
     arr.push(2, 3, 4, 5);
-    expect(arr.getItems()).toEqual([1, 2, 3, 4, 5]);
+    expect(arr.items).toEqual([1, 2, 3, 4, 5]);
   });
 
   it('should sort array', () => {
     const arr = new SortedArray([23, 45, 2, 100, 3, 59, 34]);
 
-    expect(arr.getItems()).toEqual([2, 3, 23, 34, 45, 59, 100]);
+    expect(arr.items).toEqual([2, 3, 23, 34, 45, 59, 100]);
   });
 
   it('should find value', () => {

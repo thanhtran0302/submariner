@@ -9,11 +9,11 @@ export default class AbstractArray<T = number> {
     }
   }
 
-  public length(): number {
+  get length(): number {
     return this._size;
   }
 
-  public getItems(): T[] {
+  get items(): T[] {
     return this._items;
   }
 }
