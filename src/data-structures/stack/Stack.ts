@@ -8,6 +8,7 @@ export default class Stack<T = number> extends AbstractArray<T> {
   public push(item: T) {
     this._items.push(item);
     this._size += 1;
+    return this;
   }
 
   public pop() {
