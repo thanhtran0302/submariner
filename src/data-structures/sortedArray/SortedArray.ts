@@ -1,32 +1,23 @@
 import { binarySearch } from '../../algorithms/binarySearch/BinarySearch';
 import { insertionSort } from '../../algorithms/sort/insertionSort/InsertionSort';
+import AbstractArray from '../abstractArray/AbstractArray';
 
-export default class SortedArray {
-  private _array: number[] = [];
-  private _size: number = 0;
-
+export default class SortedArray extends AbstractArray {
   constructor(values?: number[]) {
+    super(values);
     if (values) {
-      this._array = values;
+      this._items = values;
       this._size = values.length;
       this._sort();
     }
   }
 
-  public length(): number {
-    return this._size;
-  }
-
   public getByIdx(idx: number): number {
-    return this._array[idx];
-  }
-
-  public get(): number[] {
-    return this._array;
+    return this._items[idx];
   }
 
   public find(value: number): number {
-    return binarySearch(this._array, value, 0, this._array.length - 1);
+    return binarySearch(this._items, value, 0, this._items.length - 1);
   }
 
   // Why insertion sort ?
@@ -37,11 +28,11 @@ export default class SortedArray {
   // Because we know that this array is already sorted for the
   // first time.
   public push(...value: number[]): number {
-    const isSorted: boolean = this._array.length > 0;
+    const isSorted: boolean = this._items.length > 0;
 
-    this._array.push(...value);
+    this._items.push(...value);
     if (isSorted) {
-      this._array = insertionSort(this._array);
+      this._items = insertionSort(this._items);
     } else {
       this._sort();
     }
@@ -50,6 +41,6 @@ export default class SortedArray {
   }
 
   private _sort() {
-    this._array.sort((a: number, b: number) => a - b);
+    this._items.sort((a: number, b: number) => a - b);
   }
 }

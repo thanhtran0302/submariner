@@ -9,7 +9,7 @@ export default class AbstractArray<T = number> {
     }
   }
 
-  public length() {
+  public length(): number {
     return this._size;
   }
 
