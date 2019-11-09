@@ -1,3 +1,5 @@
+import { immutableObject } from '../../utils/Obj';
+
 export interface LinkNode<T = number> {
   value: T;
   next: LinkNode<T>;
@@ -22,10 +24,12 @@ export default class DoubleLinkedList<T> {
     }
   }
 
+  // test immutability
   get head(): LinkNode<T> {
     return this._head;
   }
 
+  // test immutability
   get tail(): LinkNode<T> {
     return this._tail;
   }
@@ -38,9 +42,10 @@ export default class DoubleLinkedList<T> {
     };
     this._head = node;
     this._size += 1;
-    return node;
+    return immutableObject(node); // test immutability
   }
 
+  // test immutability
   public push(value: T): LinkNode<T> {
     const node: LinkNode<T> = {
       value,
@@ -87,6 +92,7 @@ export default class DoubleLinkedList<T> {
     return null;
   }
 
+  // test immutability
   public pop(): LinkNode<T> {
     if (!this._size) {
       return null;
@@ -105,6 +111,7 @@ export default class DoubleLinkedList<T> {
     return node;
   }
 
+  // test immutability
   public deleteHead(): LinkNode<T> {
     if (!this._size) {
       return null;
@@ -122,6 +129,7 @@ export default class DoubleLinkedList<T> {
     return node;
   }
 
+  // test immutability
   public deleteValue(value: T): LinkNode<T> {
     const node: LinkNode<T> = {
       value,
