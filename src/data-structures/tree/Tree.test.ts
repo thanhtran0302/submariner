@@ -264,6 +264,70 @@ describe('Tree', () => {
     expect(tree.root).toEqual(null);
   });
 
+  it('should delete node with found value in the right and immutable returned object', () => {
+    const tree = new Tree(50);
+    tree.insert(25);
+    tree.insert(15);
+    tree.insert(10);
+    tree.insert(20);
+    tree.insert(27);
+    tree.insert(26);
+    tree.insert(28);
+
+    tree.insert(75);
+    tree.insert(65);
+    tree.insert(60);
+    tree.insert(68);
+    tree.insert(80);
+    tree.insert(77);
+    tree.insert(85);
+
+    const deleted = tree.deleteNode(75);
+    expect(JSON.stringify(deleted)).toEqual(
+      '{"value":75,"left":{"value":65,"left":{"value":60,"left":null,"right":null},"right":{"value":68,"left":null,"right":null}},"right":{"value":80,"left":null,"right":{"value":85,"left":null,"right":null}}}'
+    );
+    deleted.left = {
+      value: 5050,
+      left: null,
+      right: null
+    };
+    expect(JSON.stringify(tree.root)).toEqual(
+      '{"value":50,"left":{"value":25,"left":{"value":15,"left":{"value":10,"left":null,"right":null},"right":{"value":20,"left":null,"right":null}},"right":{"value":27,"left":{"value":26,"left":null,"right":null},"right":{"value":28,"left":null,"right":null}}},"right":{"value":77,"left":{"value":65,"left":{"value":60,"left":null,"right":null},"right":{"value":68,"left":null,"right":null}},"right":{"value":80,"left":null,"right":{"value":85,"left":null,"right":null}}}}'
+    );
+  });
+
+  it('should delete node with found value in the left and immutable returned object', () => {
+    const tree = new Tree(50);
+    tree.insert(25);
+    tree.insert(15);
+    tree.insert(10);
+    tree.insert(20);
+    tree.insert(27);
+    tree.insert(26);
+    tree.insert(28);
+
+    tree.insert(75);
+    tree.insert(65);
+    tree.insert(60);
+    tree.insert(68);
+    tree.insert(80);
+    tree.insert(77);
+    tree.insert(85);
+
+    const deleted = tree.deleteNode(25);
+    expect(JSON.stringify(deleted)).toEqual(
+      '{"value":25,"left":{"value":15,"left":{"value":10,"left":null,"right":null},"right":{"value":20,"left":null,"right":null}},"right":{"value":27,"left":null,"right":{"value":28,"left":null,"right":null}}}'
+    );
+    deleted.left = {
+      value: 5050,
+      left: null,
+      right: null
+    };
+    expect(JSON.stringify(tree.root)).toEqual(
+      '{"value":50,"left":{"value":26,"left":{"value":15,"left":{"value":10,"left":null,"right":null},"right":{"value":20,"left":null,"right":null}},"right":{"value":27,"left":null,"right":{"value":28,"left":null,"right":null}}},"right":{"value":75,"left":{"value":65,"left":{"value":60,"left":null,"right":null},"right":{"value":68,"left":null,"right":null}},"right":{"value":80,"left":{"value":77,"left":null,"right":null},"right":{"value":85,"left":null,"right":null}}}}'
+    );
+  });
+
   it('should find min value in tree and return immutable node', () => {
     const tree = new Tree(10);
 
@@ -337,5 +401,11 @@ describe('Tree', () => {
       },
       right: { value: 11, left: null, right: null }
     });
+  });
+
+  it('should not find parent with empty tree', () => {
+    const tree = new Tree();
+
+    expect(tree.findParent(100)).toEqual(null);
   });
 });

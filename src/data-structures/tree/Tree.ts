@@ -53,6 +53,7 @@ export default class Tree {
     this._postOrderTraversal(this._tree, callback);
   }
 
+  // @TODO: Possibility to delete root node.
   public deleteNode(value: number): TreeNode {
     if (!this._tree.right && !this._tree.left) {
       if (value === this._tree.value) {
@@ -62,6 +63,25 @@ export default class Tree {
       }
       return null;
     }
+    const toRemoveNode: TreeNode = this._findNode(this._tree, value);
+    const toRemoveNodeRight: TreeNode = toRemoveNode.right;
+    const toRemoveNodeLeft: TreeNode = toRemoveNode.left;
+    const min: TreeNode = this._findMin(toRemoveNode.right);
+    const minParent: TreeNode = this._findParent(this._tree, min.value);
+    const parentNode: TreeNode = this._findParent(
+      this._tree,
+      toRemoveNode.value
+    );
+
+    min.left = toRemoveNodeLeft;
+    min.right = toRemoveNodeRight;
+    minParent.left = null;
+    if (toRemoveNode.value < parentNode.value) {
+      parentNode.left = min;
+    } else if (toRemoveNode.value > parentNode.value) {
+      parentNode.right = min;
+    }
+    return immutableObject(toRemoveNode);
   }
 
   public findMin(): TreeNode {
@@ -70,6 +90,27 @@ export default class Tree {
 
   public findMax(): TreeNode {
     return immutableObject(this._findMax(this._tree));
+  }
+
+  public findParent(value: number): TreeNode {
+    return immutableObject(this._findParent(this._tree, value));
+  }
+
+  private _findParent(node: TreeNode, value: number): TreeNode {
+    if (!node) {
+      return null;
+    }
+
+    if (value > node.value) {
+      if (node.right && node.right.value === value) {
+        return node;
+      }
+      return this._findParent(node.right, value);
+    }
+    if (node.left && node.left.value === value) {
+      return node;
+    }
+    return this._findParent(node.left, value);
   }
 
   private _findMin(node: TreeNode): TreeNode {
