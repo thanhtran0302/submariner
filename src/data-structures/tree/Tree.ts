@@ -10,6 +10,19 @@ export default class Tree {
   get root() {
     return immutableObject(this._tree);
   }
+
+  get min(): TreeNode {
+    return immutableObject(this._findMin(this._tree));
+  }
+
+  get max(): TreeNode {
+    return immutableObject(this._findMax(this._tree));
+  }
+
+  get toJSON(): string {
+    return JSON.stringify(this._tree);
+  }
+
   private _tree: TreeNode = null;
 
   constructor(value?: number) {
@@ -37,19 +50,15 @@ export default class Tree {
     return immutableObject(node);
   }
 
-  get toJSON(): string {
-    return JSON.stringify(this._tree);
-  }
-
-  public inOrderTraversel(callback: (node: TreeNode) => void) {
+  public inOrderTraversal(callback: (node: TreeNode) => void): void {
     this._inOrderTraversal(this._tree, callback);
   }
 
-  public preOrderTraversel(callback: (node: TreeNode) => void) {
-    this._preOrderTraversel(this._tree, callback);
+  public preOrderTraversal(callback: (node: TreeNode) => void): void {
+    this._preOrderTraversal(this._tree, callback);
   }
 
-  public postOrderTraversal(callback: (node: TreeNode) => void) {
+  public postOrderTraversal(callback: (node: TreeNode) => void): void {
     this._postOrderTraversal(this._tree, callback);
   }
 
@@ -82,14 +91,6 @@ export default class Tree {
       parentNode.right = min;
     }
     return immutableObject(toRemoveNode);
-  }
-
-  get min(): TreeNode {
-    return immutableObject(this._findMin(this._tree));
-  }
-
-  get max(): TreeNode {
-    return immutableObject(this._findMax(this._tree));
   }
 
   public findParent(value: number): TreeNode {
@@ -127,14 +128,14 @@ export default class Tree {
     return node;
   }
 
-  private _preOrderTraversel(
+  private _preOrderTraversal(
     node: TreeNode,
     callback: (node: TreeNode) => void
   ) {
     if (node) {
       callback(immutableObject(node));
-      this._preOrderTraversel(node.left, callback);
-      this._preOrderTraversel(node.right, callback);
+      this._preOrderTraversal(node.left, callback);
+      this._preOrderTraversal(node.right, callback);
     }
   }
 

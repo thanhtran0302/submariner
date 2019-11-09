@@ -181,7 +181,7 @@ describe('Tree', () => {
     tree.insert(4.5);
     tree.insert(5.5);
     tree.insert(6.5);
-    tree.inOrderTraversel((node: TreeNode) => {
+    tree.inOrderTraversal((node: TreeNode) => {
       expect(node.value).toEqual(arrCmp[i]);
       ++i;
     });
@@ -199,7 +199,7 @@ describe('Tree', () => {
     tree.insert(4.5);
     tree.insert(5.5);
     tree.insert(6.5);
-    tree.preOrderTraversel((node: TreeNode) => {
+    tree.preOrderTraversal((node: TreeNode) => {
       expect(node.value).toEqual(arrCmp[i]);
       ++i;
     });
