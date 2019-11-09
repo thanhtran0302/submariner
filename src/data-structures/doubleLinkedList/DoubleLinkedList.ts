@@ -24,14 +24,12 @@ export default class DoubleLinkedList<T> {
     }
   }
 
-  // test immutability
   get head(): LinkNode<T> {
-    return this._head;
+    return immutableObject(this._head);
   }
 
-  // test immutability
   get tail(): LinkNode<T> {
-    return this._tail;
+    return immutableObject(this._tail);
   }
 
   public pushHead(value: T): LinkNode<T> {
@@ -42,10 +40,9 @@ export default class DoubleLinkedList<T> {
     };
     this._head = node;
     this._size += 1;
-    return immutableObject(node); // test immutability
+    return immutableObject(node);
   }
 
-  // test immutability
   public push(value: T): LinkNode<T> {
     const node: LinkNode<T> = {
       value,
@@ -56,13 +53,13 @@ export default class DoubleLinkedList<T> {
       this._head = node;
       this._tail = node;
       this._size += 1;
-      return node;
+      return immutableObject(node);
     }
     node.prev = this._tail;
     this._tail.next = node;
     this._tail = node;
     this._size += 1;
-    return node;
+    return immutableObject(node);
   }
 
   public pushAt(value: T, newVal: T): LinkNode<T> {
