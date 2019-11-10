@@ -4,6 +4,10 @@
   "description": "Algorithm & Data structures utils",
   "main": "./dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/03t02/submariner"
+  },
   "scripts": {
     "build": "rm -rf dist && tsc",
     "test": "jest --env=jsdom --logHeapUsage --maxWorkers=2 --verbose",
