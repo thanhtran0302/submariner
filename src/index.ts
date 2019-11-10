@@ -9,3 +9,5 @@ export { binarySearch } from './algorithms/binarySearch/BinarySearch';
 export {
   default as SortedArray
 } from './data-structures/sortedArray/SortedArray';
+export { insertionSort } from './algorithms/sort/insertionSort/InsertionSort';
+export { default as Tree, TreeNode } from './data-structures/tree/Tree';
