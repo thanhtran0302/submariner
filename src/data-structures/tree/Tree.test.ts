@@ -328,6 +328,22 @@ describe('Tree', () => {
     );
   });
 
+  it('should delete root node', () => {
+    const tree = new Tree(50);
+
+    tree.insert(45);
+    tree.insert(40);
+    tree.insert(47);
+
+    tree.insert(55);
+    tree.insert(54);
+    tree.insert(60);
+    tree.deleteNode(50);
+    expect(JSON.stringify(tree.root)).toEqual(
+      '{"value":54,"left":{"value":45,"left":{"value":40,"left":null,"right":null},"right":{"value":47,"left":null,"right":null}},"right":{"value":55,"left":null,"right":{"value":60,"left":null,"right":null}}}'
+    );
+  });
+
   it('should find min value in tree and return immutable node', () => {
     const tree = new Tree(10);
 
@@ -346,23 +362,9 @@ describe('Tree', () => {
       left: null,
       right: null
     };
-    expect(tree.root).toEqual({
-      value: 10,
-      left: {
-        value: 5,
-        left: {
-          value: 4,
-          left: { value: 3, left: null, right: null },
-          right: { value: 4.5, left: null, right: null }
-        },
-        right: {
-          value: 6,
-          left: { value: 5.5, left: null, right: null },
-          right: { value: 6.5, left: null, right: null }
-        }
-      },
-      right: null
-    });
+    expect(JSON.stringify(tree.root)).toEqual(
+      '{"value":10,"left":{"value":5,"left":{"value":4,"left":{"value":3,"left":null,"right":null},"right":{"value":4.5,"left":null,"right":null}},"right":{"value":6,"left":{"value":5.5,"left":null,"right":null},"right":{"value":6.5,"left":null,"right":null}}},"right":null}'
+    );
   });
 
   it('should find max value in tree and return immutable node', () => {
@@ -384,23 +386,9 @@ describe('Tree', () => {
       left: null,
       right: null
     };
-    expect(tree.root).toEqual({
-      value: 10,
-      left: {
-        value: 5,
-        left: {
-          value: 4,
-          left: { value: 3, left: null, right: null },
-          right: { value: 4.5, left: null, right: null }
-        },
-        right: {
-          value: 6,
-          left: { value: 5.5, left: null, right: null },
-          right: { value: 6.5, left: null, right: null }
-        }
-      },
-      right: { value: 11, left: null, right: null }
-    });
+    expect(JSON.stringify(tree.root)).toEqual(
+      '{"value":10,"left":{"value":5,"left":{"value":4,"left":{"value":3,"left":null,"right":null},"right":{"value":4.5,"left":null,"right":null}},"right":{"value":6,"left":{"value":5.5,"left":null,"right":null},"right":{"value":6.5,"left":null,"right":null}}},"right":{"value":11,"left":null,"right":null}}'
+    );
   });
 
   it('should not find parent with empty tree', () => {

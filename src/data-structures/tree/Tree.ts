@@ -62,7 +62,6 @@ export default class Tree {
     this._postOrderTraversal(this._tree, callback);
   }
 
-  // @TODO: Possibility to delete root node.
   public deleteNode(value: number): TreeNode {
     if (!this._tree.right && !this._tree.left) {
       if (value === this._tree.value) {
@@ -85,10 +84,14 @@ export default class Tree {
     min.left = toRemoveNodeLeft;
     min.right = toRemoveNodeRight;
     minParent.left = null;
-    if (toRemoveNode.value < parentNode.value) {
-      parentNode.left = min;
-    } else if (toRemoveNode.value > parentNode.value) {
-      parentNode.right = min;
+    if (parentNode) {
+      if (toRemoveNode.value < parentNode.value) {
+        parentNode.left = min;
+      } else if (toRemoveNode.value > parentNode.value) {
+        parentNode.right = min;
+      }
+    } else {
+      this._tree = min;
     }
     return immutableObject(toRemoveNode);
   }
