@@ -1,7 +1,7 @@
 {
-  "name": "algolia_parser",
+  "name": "submariner",
   "version": "1.0.0",
-  "description": "Algorithm utils",
+  "description": "Algorithm & Data structures utils",
   "main": "./dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
