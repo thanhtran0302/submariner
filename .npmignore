@@ -1,2 +1,6 @@
 tsconfig.json
 src
+node_modules
+coverage
+jest.config.json
+tslint.json
